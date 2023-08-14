@@ -4,7 +4,7 @@ By Donghyun / https://donghyun.cc
 */
 
 
-//Ai Camera   **다이나믹셀 라이브러리하고 출돌해서 먼저 선언 필수**
+//허스키렌즈   **다이나믹셀 라이브러리하고 출돌해서 먼저 선언 필수**
 #include "HUSKYLENS.h"
 HUSKYLENS huskylens;
 #include <string>
@@ -23,8 +23,7 @@ uint8_t dxl_id[3] = { DXL_ID1, DXL_ID2, DXL_ID3 };  // 3개의 모터 선언
 
 
 //=========================================================//
-//DONGHYUN Dynamic HuskyLens Engine
-
+//DONGHYUN SCPU [ Super Camera Processing Unit ] INIT
 void printResult(HUSKYLENSResult result);
 
 //Block 1
@@ -32,11 +31,22 @@ int X_root_D = 1;
 int ObjectnotDected = 1;
 int Line_not_Dected = 1;
 
+//OpenCM 9.04
+#define _OPENCM_NO_ERRORS = 0x000000
+
+#define _DNX_SERVICE 
+
+#define _MY_EEPROM
+
+#define _EEPROM_SECURE
+
+#define _HY2N_SCPU_UNIT
+
 //Line
-int Line_select = 0;                                //선택된라인
-int Line_count = 0;                                 //감지라인
-int Line_X[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  //init
-int Line_Y[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+int Line_select = 0;                                //선택된 라인
+int Line_count = 0;                                 //감지된 라인
+int Line_X[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  //X값변수
+int Line_Y[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  //Y값변수
 int Line_Height[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int Line_Width[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int X_LR = 0;         //왼쪽오른쪽구분
@@ -46,9 +56,7 @@ int X_MinValue = 20;  //차선허용범위 (양옆값)
 int X_notTurn = 1;    //90도 회전 여부
 int X_SV = 0;         //회전각함수
 int X_SV_Back = 0;    //회전후진함수
-int X_Dec_select = 0;
-int X_Trun_time = 1000;
-int toggle = 1;
+int X_Trun_time = 1000;//회전시간
 
 //=========================================================//
 
